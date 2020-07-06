@@ -16,6 +16,7 @@ export default class Main extends Component {
         this.handleInput = this.handleInput.bind(this);
         this.adicionaTarefa = this.adicionaTarefa.bind(this);
         this.deletaTarefa = this.deletaTarefa.bind(this);
+        this.alteraTarefa = this.alteraTarefa.bind(this);
     }
 
     handleInput = (e) => { //atualizando a tarefaAtual
@@ -50,6 +51,19 @@ export default class Main extends Component {
             tarefas: filtraTarefas
         })
     }
+
+    alteraTarefa(text, key){
+        const tarefas = this.state.tarefas;
+        tarefas.map(tarefa =>{
+            if (tarefa.key === key) {
+                tarefa.text=text; 
+            }
+        })
+        this.setState({
+            tarefas: tarefas
+        })
+    }
+
     render() {
         return ( //campo de inserir tarefa
             <div className="Main">
@@ -63,7 +77,8 @@ export default class Main extends Component {
                     </form>
                 </header>
                 <ListaTarefas tarefas= {this.state.tarefas}
-                deletaTarefa = {this.deletaTarefa}/>
+                deletaTarefa = {this.deletaTarefa}
+                alteraTarefa={this.alteraTarefa}/>
             </div>
         )
     }

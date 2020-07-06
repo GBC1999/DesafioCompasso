@@ -9,11 +9,19 @@ export default function ListaTarefas(props) {
     const tarefas = props.tarefas;
     const lista = tarefas.map(tarefa => {
         return <div className="listagem" key={tarefa.key}>
-            <p>{tarefa.text}
+            <p>
+                <input type="text"
+                    id={tarefa.key}
+                    value={tarefa.text} 
+                    onChange={
+                        (e) =>{
+                            props.setUpdate(e.target.value, tarefa.key)
+                        }
+                    }/>
                 <i class="small material-icons"
-                onClick={ () =>
-                    props.deletaTarefa(tarefa.key)
-                }>delete</i>
+                    onClick={() =>
+                        props.deletaTarefa(tarefa.key)
+                    }>delete</i>
             </p>
         </div>
     })

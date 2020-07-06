@@ -17,3 +17,14 @@
     padding: 10px;
     cursor: pointer;
 }
+
+.listagem p input{
+    background-color: transparent;
+    border: 0;
+    font-size: 18px;
+
+}
+
+.listagem p input:focus{
+    outline: none;
+}
