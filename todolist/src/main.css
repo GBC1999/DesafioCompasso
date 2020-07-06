@@ -1,0 +1,35 @@
+body{
+    background-clip: #FFFFFF;
+}
+
+.Main{
+    background-color: #b9b9b9;
+    min-height: 550px;
+    width: 400px;
+    margin: 35px auto;
+}
+
+#tarefa input{
+    text-align: center;
+    background-color: #fffab5;
+    border: 0;
+    width: auto;
+    height: 40px;
+    padding: 0 22px;
+    margin: 25px;
+    font-size: medium;
+    border-radius: 10px;
+}
+
+#tarefa input:focus, #tarefa button:focus{
+    outline:none;
+}
+
+#tarefa button{
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    border-radius: 8px;
+    border-color: #000000;
+    font-weight: bold;
+}
