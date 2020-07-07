@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' //useEffect permite fornecer funcionalidades aos dados
 import './main.css';
-import cadastroTarefa from './componentes/CadastroTarefa';
+import CadastroTarefa from './componentes/CadastroTarefa';
 import ListaTarefas from "./componentes/ListaTarefas";
 import Typography from "@material-ui/core/Typography";
 
@@ -47,7 +47,7 @@ export default function Main() {
             <Typography style={{ padding: 10 }} variant="h3">
                 Lista de Tarefas
                 </Typography>
-            <cadastroTarefa adicionaTarefa={adicionaTarefa} />
+            <CadastroTarefa adicionaTarefa={adicionaTarefa} />
             <ListaTarefas
                 tarefas={tarefas}
                 alternaFeito={alternaFeito}
