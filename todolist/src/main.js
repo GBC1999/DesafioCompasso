@@ -47,7 +47,7 @@ export default function Main() {
             <Typography style={{ padding: 10 }} variant="h3">
                 Lista de Tarefas
                 </Typography>
-            <CadastroTarefa adicionaTarefa={adicionaTarefa} />
+            <cadastroTarefa adicionaTarefa={adicionaTarefa} />
             <ListaTarefas
                 tarefas={tarefas}
                 alternaFeito={alternaFeito}
