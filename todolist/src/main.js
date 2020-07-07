@@ -1,85 +1,58 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react' //useEffect permite fornecer funcionalidades aos dados
 import './main.css';
-import ListaTarefas from './ListaTarefas'
-//import M from 'materialize-css';
+import cadastroTarefa from "./componentes/cadastroTarefa";
+import ListaTarefas from "./componentes/ListaTarefas";
+import Typography from "@material-ui/core/Typography";
 
-export default class Main extends Component {
-    constructor(props) { //construtor com o array de tarefas e o objeto com a tarefa atuaç
-        super(props);
-        this.state = {
-            tarefas: [],
-            tarefaAtual: {
-                text: '', //tarefa
-                key: ''  //data que foi inserida
-            }
+const LOCAL_STORAGE_KEY = "react-TodoList-tarefas";
+
+export default function Main() {
+    const [tarefas, setTarefas] = useState([]); //array de dois itens, sendo tarefa o estado, setTarefa passador de parametro(s) e useState funcao de atualizar parametro(s) 
+
+    useEffect(() => {
+        const storageTarefas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+        if (storageTarefas) {
+            setTarefas(storageTarefas);
         }
-        this.handleInput = this.handleInput.bind(this);
-        this.adicionaTarefa = this.adicionaTarefa.bind(this);
-        this.deletaTarefa = this.deletaTarefa.bind(this);
-        this.alteraTarefa = this.alteraTarefa.bind(this);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tarefas));
+    }, [tarefas]);
+
+    function adicionaTarefa(lista) { //adiciona uma tarefa
+        setTarefas([lista, ...tarefas]);
     }
 
-    handleInput = (e) => { //atualizando a tarefaAtual
-        this.setState({
-            tarefaAtual:{
-                text: e.target.value,
-                key: Date.call()
-            }
-        })
-    }
-
-    adicionaTarefa(e){
-        e.preventDefault(); //mantem na mesma pagina
-        const novaTarefa = this.state.tarefaAtual;
-        // console.log(novaTarefa);
-        if (novaTarefa.text !== "") {    //validando tarefa
-            const novasTarefas = [...this.state.tarefas, novaTarefa];
-            this.setState({
-                tarefas: novasTarefas,
-                tarefaAtual: {
-                    text: '', 
-                    key: ''  
-                } 
+    function alternaFeito(id) { //alterna a condicao do feito
+        setTarefas(
+            tarefas.map(lista => {
+                if (lista.id === id) {
+                    return {
+                        ...lista,
+                        feito: !lista.feito
+                    };
+                }
+                return lista;
             })
-        }
-    }
-    deletaTarefa(key){
-        const filtraTarefas = this.state.tarefas.filter(tarefa =>
-           tarefa.key !== key 
         );
-        this.setState({
-            tarefas: filtraTarefas
-        })
     }
 
-    alteraTarefa(text, key){
-        const tarefas = this.state.tarefas;
-        tarefas.map(tarefa =>{
-            if (tarefa.key === key) {
-                tarefa.text=text; 
-            }
-        })
-        this.setState({
-            tarefas: tarefas
-        })
+    function removeTarefa(id) {
+        setTarefas(tarefas.filter(lista => lista.id !== id));
     }
 
-    render() {
-        return ( //campo de inserir tarefa
-            <div className="Main">
-                <header>
-                    <form id="tarefa" onSubmit={this.adicionaTarefa}>
-                        <input type="text" placeholder="Digite uma tarefa"
-                            value={this.state.tarefaAtual.text}
-                            onChange={this.handleInput}/>
-                        <br />
-                        <button type="submit">Adicionar</button>
-                    </form>
-                </header>
-                <ListaTarefas tarefas= {this.state.tarefas}
-                deletaTarefa = {this.deletaTarefa}
-                alteraTarefa={this.alteraTarefa}/>
-            </div>
-        )
-    }
+    return ( //campo de inserir tarefa
+        <div className="Main">
+            <Typography style={{ padding: 16 }} variant="h1">
+                Lista de Tarefas
+                </Typography>
+            <cadastroTarefa adicionaTarefa={adicionaTarefa} />
+            <ListaTarefas
+                tarefas={tarefas}
+                alternaFeito={alternaFeito}
+                removeTarefa={removeTarefa} />
+
+        </div>
+    );
 } 
