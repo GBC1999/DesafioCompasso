@@ -2,7 +2,7 @@ import React from 'react';
 import {v4 as uuid} from "uuid";
 import { Button, TextField } from "@material-ui/core";
 
-function CadastroTarefa({ AdicionaTarefa }) {
+function cadastroTarefa({ AdicionaTarefa }) {
     const [lista, setTarefa] = ({
         id: '', //identificador de tarefa
         tarefa: "",  //parametro
@@ -38,4 +38,4 @@ function CadastroTarefa({ AdicionaTarefa }) {
 }
 
 
-export default CadastroTarefa;
+export default cadastroTarefa;

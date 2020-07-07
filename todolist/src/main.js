@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react' //useEffect permite fornecer funcionalidades aos dados
 import './main.css';
-import CadastroTarefa from './componentes/CadastroTarefa';
+import cadastroTarefa from './componentes/cadastroTarefa';
 import ListaTarefas from "./componentes/ListaTarefas";
 import Typography from "@material-ui/core/Typography";
 
 const LOCAL_STORAGE_KEY = "react-TodoList-tarefas";
 
 export default function Main() {
-    const [tarefas, setTarefas] = useState([]); //array de dois itens, sendo tarefa o estado, setTarefa passador de parametro(s) e useState funcao de atualizar parametro(s) 
+    const [tarefas, setTarefas] = useState([]); //array de dois itens, sendo tarefa o estado, setTarefas passador de parametro(s) e useState funcao de atualizar parametro(s) 
 
     useEffect(() => {
         const storageTarefas = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
