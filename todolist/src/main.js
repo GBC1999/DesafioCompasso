@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' //useEffect permite fornecer funcionalidades aos dados
 import './main.css';
-import cadastroTarefa from "./componentes/cadastroTarefa";
+import cadastroTarefa from './componentes/CadastroTarefa';
 import ListaTarefas from "./componentes/ListaTarefas";
 import Typography from "@material-ui/core/Typography";
 
@@ -44,15 +44,15 @@ export default function Main() {
 
     return ( //campo de inserir tarefa
         <div className="Main">
-            <Typography style={{ padding: 16 }} variant="h1">
+            <Typography style={{ padding: 10 }} variant="h3">
                 Lista de Tarefas
                 </Typography>
             <cadastroTarefa adicionaTarefa={adicionaTarefa} />
             <ListaTarefas
                 tarefas={tarefas}
                 alternaFeito={alternaFeito}
-                removeTarefa={removeTarefa} />
-
+                removeTarefa={removeTarefa} 
+            />
         </div>
     );
 } 

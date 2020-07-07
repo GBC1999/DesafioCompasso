@@ -1,8 +1,8 @@
 import React from 'react';
-import uuid from "uuid";
+import {v4 as uuid} from "uuid";
 import { Button, TextField } from "@material-ui/core";
 
-function cadastroTarefa({ adicionaTarefa }) {
+function CadastroTarefa({ AdicionaTarefa }) {
     const [lista, setTarefa] = ({
         id: '', //identificador de tarefa
         tarefa: "",  //parametro
@@ -17,7 +17,7 @@ function cadastroTarefa({ adicionaTarefa }) {
     function handleSubmit(e) { //entrada da tarefa
         e.preventDefault();
         if (lista.tarefa.trim()) { //trim remove os espacos em branco
-            adicionaTarefa({ ...lista, id: uuid.v4() });//uuid pacote de id unico e v4 faz ele gerar o id
+            AdicionaTarefa({ ...lista, id: uuid.v4() });//uuid pacote de id unico e v4 faz ele gerar o id
             //reinicia a entrada de tarefa 
             setTarefa({ ...lista, tarefa: "" });
         }
@@ -38,4 +38,4 @@ function cadastroTarefa({ adicionaTarefa }) {
 }
 
 
-export default cadastroTarefa;
+export default CadastroTarefa;
